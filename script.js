@@ -28,7 +28,7 @@ $(document).ready(function () {
                     })
                     .then((data) => {
                         var highTempEl;
-                        console.log(data);
+
 
                         highTempEl = data["main"].temp_max;
                         var pHighTemp = document.getElementById("main5");
@@ -65,20 +65,107 @@ $(document).ready(function () {
                         windDegEl.innerHTML = "Wind Degrees: " + windDeg;
                     })
 
-                var fiveDayWeather = `api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${appid}`;
 
+
+                var fiveDayWeather = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=imperial&appid=${appid}`;
                 fetch(fiveDayWeather)
                     .then((response) => {
                         return response.json();
-                    
-                        .then((data) => {
-                            console.log(data);
+                    })
+
+                    .then((data) => {
+                        console.log(data);
 
 
-                        });
-                    });
+
+                        const array1 = data;
+                        const map1 = array1.list[0].main.temp_max;
+                        console.log(map1);
+                        var highTemp1_5day;
+                        highTemp1_5day = document.getElementById("fiveday0");
+                        highTemp1_5day.innerHTML = "High Temp: " + map1;
+
+                        const map2 = array1.list[0].dt_txt;
+                        console.log(map2);
+                        var heading;
+                        heading = document.getElementById("heading");
+                        heading.innerHTML = map2;
+
+                        const map3 = array1.list[8].dt_txt;
+                        console.log(map3);
+                        var heading2;
+                        heading2 = document.getElementById("heading2");
+                        heading2.innerHTML = map3;
+
+                        const map4 = array1.list[16].dt_txt;
+                        console.log(map4);
+                        var heading3;
+                        heading3 = document.getElementById("heading3");
+                        heading3.innerHTML = map4;
+
+                        const map5 = array1.list[24].dt_txt;
+                        console.log(map5);
+                        var heading4;
+                        heading4 = document.getElementById("heading4");
+                        heading4.innerHTML = map5;
+
+                        const map6 = array1.list[32].dt_txt;
+                        console.log(map6);
+                        var heading5;
+                        heading5 = document.getElementById("heading5");
+                        heading5.innerHTML = map6;
+
+                        const map7 = array1.list[8].main.temp_max;
+                        console.log(map7);
+                        var highTemp2_5day;
+                        highTemp2_5day = document.getElementById("fiveday2");
+                        highTemp2_5day.innerHTML = "High Temp: " + map1;
+
+                        const map8 = array1.list[16].main.temp_max;
+                        console.log(map8);
+                        var highTemp3_5day;
+                        highTemp3_5day = document.getElementById("fiveday3");
+                        highTemp3_5day.innerHTML = "High Temp: " + map8;
+                        const map9 = array1.list[24].main.temp_max;
+                        console.log(map9);
+                        var highTemp4_5day;
+                        highTemp4_5day = document.getElementById("fiveday4");
+                        highTemp4_5day.innerHTML = "High Temp: " + map9;
+
+                        const map10 = array1.list[32].main.temp_max;
+                        console.log(map10);
+                        var highTemp5_5day;
+                        highTemp5_5day = document.getElementById("fiveday5");
+                        highTemp5_5day.innerHTML = "High Temp: " + map10;
+
+
+
+                        const map11 = array1.list[0].main.temp_min;
+                        console.log(map11);
+                        
+                        highTemp5_5day = document.getElementById("lowTemp0");
+                        highTemp5_5day.innerHTML = "Low Temp: " + map11;
+
+                        const map12 = array1.list[8].main.temp_min;
+                        highTemp5_5day = document.getElementById("lowTemp1");
+                        highTemp5_5day.innerHTML = "Low Temp: " + map12;
+
+                        const map13 = array1.list[16].main.temp_min;
+                        highTemp5_5day = document.getElementById("lowTemp2");
+                        highTemp5_5day.innerHTML = "Low Temp: " + map13;
+
+                        const map14 = array1.list[24].main.temp_min;
+                        highTemp5_5day = document.getElementById("lowTemp3");
+                        highTemp5_5day.innerHTML = "Low Temp: " + map14;
+
+                        const map15 = array1.list[32].main.temp_min;
+                        highTemp5_5day = document.getElementById("lowTemp4");
+                        highTemp5_5day.innerHTML = "Low Temp: " + map15;
+
+                        
+                    })
             });
 
-        })
     })
+})
 
