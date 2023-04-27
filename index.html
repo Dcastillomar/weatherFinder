@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Weather Finder</title>
+</head>
+
+<body>
+    <div>
+        <main class="col">
+            <div class="input-group input-group-sm mb-3">
+                <div id="searchbar" class="textContainer">
+                    <button id="button" type="button" class="btn btn-primary">Search</button>
+                    <input id="form" type="text" class="form-control" aria-label="Small"
+                        aria-describedby="inputGroup-sizing-sm">
+                </div>
+            </div>
+
+
+            <div id="history" class="row">
+                <div class="col align-self-start">
+                    Previous Searches:
+                </div>
+            </div>
+
+
+    </div>
+    </main>
+    <main class="container">
+        <h5 class="container-title p-2">Current Weather</h5>
+
+        <div class="weather-row">
+            <div class="current-weather">
+                <div class="container-text" style="width: 50vw">
+
+                    <img src="http://openweathermap.org/img/wn/10d@4x.png" class="card-img-right"
+                        alt="Weather description" />
+                    <div class="container">
+                        <p id="main5" class="container-text">High Temp </p>
+                        <p id="main6" class="container-text">Low Temp</p>
+                        <p id="main0" class="container-text">Feels like</p>
+                        <p id="main2" class="container-text">Pressure</p>
+                        <p id="main1" class="container-text">Humidity</p>
+                        <p id="wind1" class="container-text">Wind speed </p>
+                        <p id="wind2" class="container-text">Wind Degrees </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <TABLE BORDER=1>
+        <h5>5 Day Forecast</h5>
+        <TR>
+            <TH>Day 1</TH>
+            <TH>Day 2</TH>
+            <TH>Day 3</TH>
+            <TH>Day 4</TH>
+            <TH>Day 5</TH>
+        </TR>
+        <TR>
+            <TD>
+                <p id="main5" class="container-text">High Temp </p>
+                <p id="main6" class="container-text">Low Temp</p>
+                <p id="main0" class="container-text">Feels like</p>
+                <p id="main2" class="container-text">Pressure</p>
+                <p id="main1" class="container-text">Humidity</p>
+                <p id="wind1" class="container-text">Wind speed </p>
+                <p id="wind2" class="container-text">Wind Degrees </p>
+            </TD>
+            <TD> <BR>
+                <p id="main5" class="container-text">High Temp </p>
+                <p id="main6" class="container-text">Low Temp</p>
+                <p id="main0" class="container-text">Feels like</p>
+                <p id="main2" class="container-text">Pressure</p>
+                <p id="main1" class="container-text">Humidity</p>
+                <p id="wind1" class="container-text">Wind speed </p>
+                <p id="wind2" class="container-text">Wind Degrees </p> <BR>
+            </TD>
+            <TD><BR>
+                <p id="main5" class="container-text">High Temp </p>
+                <p id="main6" class="container-text">Low Temp</p>
+                <p id="main0" class="container-text">Feels like</p>
+                <p id="main2" class="container-text">Pressure</p>
+                <p id="main1" class="container-text">Humidity</p>
+                <p id="wind1" class="container-text">Wind speed </p>
+                <p id="wind2" class="container-text">Wind Degrees </p> <BR>
+            </TD> 
+            <TD><BR>
+                <p id="main5" class="container-text">High Temp </p>
+                <p id="main6" class="container-text">Low Temp</p>
+                <p id="main0" class="container-text">Feels like</p>
+                <p id="main2" class="container-text">Pressure</p>
+                <p id="main1" class="container-text">Humidity</p>
+                <p id="wind1" class="container-text">Wind speed </p>
+                <p id="wind2" class="container-text">Wind Degrees </p> <BR>
+            </TD> 
+            <TD><BR>
+                <p id="main5" class="container-text">High Temp </p>
+                <p id="main6" class="container-text">Low Temp</p>
+                <p id="main0" class="container-text">Feels like</p>
+                <p id="main2" class="container-text">Pressure</p>
+                <p id="main1" class="container-text">Humidity</p>
+                <p id="wind1" class="container-text">Wind speed </p>
+                <p id="wind2" class="container-text">Wind Degrees </p> <BR>
+            </TD> 
+    </TABLE>
+
+    </div>
+
+    </div </main>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

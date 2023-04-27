@@ -1,0 +1,47 @@
+
+.searchbar{
+    display:inline-block;
+}
+
+
+
+.input-group {
+    width: 25%;
+    float: left;
+    padding: 20px;
+}
+
+.row {
+
+    padding-top: .5px;
+    padding-left: 25px;
+    font-size: medium;
+    font-weight: bold;
+    padding-right: 50px;
+    clear: both;
+    overflow: hidden;
+    white-space: nowrap;
+    float: left;
+
+}
+.weather-row{
+    
+    width: 20%;
+    text-align: left;
+    padding-top: 20px;
+    
+
+}
+.container-text {
+    
+    display:flex;
+}
+
+.img {
+    float: left;
+}
+
+.container-forecast{
+    margin-right: 200;
+    float: right; 
+}
