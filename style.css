@@ -37,7 +37,7 @@ body {
 }
 
 .container-title{
-    text-align: center;
+    margin-left: 340px;
     font-weight:bold ;
     font-size: 50px;
 }
@@ -45,13 +45,12 @@ body {
     text-align: center;
     
 
-margin-left: 170px;
+margin-left: 100px;
 }
 
 .current-weather {
     text-align: center;
 }
-
 
 
 
