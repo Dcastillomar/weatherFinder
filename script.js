@@ -6,6 +6,14 @@ $(document).ready(function () {
     var url = `https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}`;
 
     searchButtonEL.addEventListener('click', () => {
+        localHistory2= document.getElementById("form");
+        localHistory2.innerText=localStorage.getItem("textContainer");
+        
+        
+       
+        
+
+
 
         q = document.getElementById("form").value;
         var geoCodeUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${q}&appid=${appid}`;
