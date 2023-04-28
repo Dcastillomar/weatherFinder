@@ -6,12 +6,13 @@ $(document).ready(function () {
     var url = `https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}`;
 
     searchButtonEL.addEventListener('click', () => {
-        localHistory2= document.getElementById("form");
-        localHistory2.innerText=localStorage.getItem("textContainer");
+        var userInput = document.getElementById('form').value;
+        var key = document.getElementById('key');
+        var searchBar = document.getElementById('history');
         
-        
+        localStorage.setItem(key, JSON.stringify(userInput));
        
-        
+        searchBar.innerHTML= "Recent Search: " + userInput;
 
 
 

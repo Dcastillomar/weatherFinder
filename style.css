@@ -1,4 +1,7 @@
-
+body {
+    background-color:rgb(113, 224, 187);
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
 .searchbar{
     display:inline-block;
 }
@@ -32,16 +35,28 @@
     
 
 }
+
+.container-title{
+    text-align: center;
+    font-weight:bold ;
+    font-size: 50px;
+}
 .container-text {
+    text-align: center;
     
-    display:flex;
+
+margin-left: 170px;
 }
 
-.img {
-    float: left;
+.current-weather {
+    text-align: center;
 }
 
-.container-forecast{
-    margin-right: 200;
-    float: right; 
+
+
+
+table {
+    width: 100%;
+    background-color: aliceblue;
 }
+
