@@ -17,7 +17,7 @@ $(document).ready(function () {
 
 
         q = document.getElementById("form").value;
-        var geoCodeUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${q}&appid=${appid}`;
+        var geoCodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${q}&appid=${appid}`;
 
         fetch(geoCodeUrl)
             .then(function (response) { return response.json(); })
