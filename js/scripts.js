@@ -1,81 +1,118 @@
-$(document).ready(function () {
-    var searchButtonEL = document.querySelector('button');
-    var userSearchEl = document.getElementById('form');
-    var appid = 'cc8ae70c1ab94ea82093b1c93affc11a';
-    var q;
-    var url = `https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}`;
+var searchFormEl = document.querySelector('form');
+var userSearchEl = document.getElementById('form');
+var appid = 'cc8ae70c1ab94ea82093b1c93affc11a';
+var q;
+var url = `https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}`;
+const weatherIcon = document.querySelector('weather-icon');
 
-    searchButtonEL.addEventListener('click', () => {
-        var userInput = document.getElementById('form').value;
-        var key = document.getElementById('key');
-        var searchBar = document.getElementById('history');
+var searchHistory = localStorage.getItem('searchHistory');
+//searchbar input and button pressed or enter hit will start the event
+searchFormEl.addEventListener('submit', function (event) {
+    event.preventDefault(); 
+// creating an array that will hold search history
+    var userInput = userSearchEl.value;
+    var key = 'searchHistory';
+    var searchHistoryArr;
+    if (!localStorage.getItem(key)) {
+        searchHistoryArr = [];
+        searchHistoryArr.push(userInput);
+        localStorage.setItem(key, JSON.stringify(searchHistoryArr));
         
-        localStorage.setItem(key, JSON.stringify(userInput));
-       
-        searchBar.innerHTML= "Recent Search: " + userInput;
+    } else if (localStorage.getItem(key)) {
+        searchHistoryArr = JSON.parse(localStorage.getItem(key));
+        searchHistoryArr.push(userInput);
+        localStorage.setItem(key, JSON.stringify(searchHistoryArr));
+        renderSearchHistory();
+        searchWeather(userInput);
+    }
 
-
-
-        q = document.getElementById("form").value;
+    //makes a each index in the array a button which calls the search weather function
+    //takes the name out of the button for q
+    function renderSearchHistory() {
+        var container = document.getElementById('history');
+        container.innerHTML = '';
+      
+        var maxResults = Math.min(searchHistoryArr.length, 12); 
+      
+        var startIndex = searchHistoryArr.length - maxResults;
+      
+        for (var i = startIndex; i < searchHistoryArr.length; i++) {
+          var value = searchHistoryArr[i];
+          const button = document.createElement('button')
+          button.innerHTML = value;
+          button.addEventListener('click', function (event) {
+            var clickedButtonValue = event.target.innerHTML;
+            searchWeather(clickedButtonValue);
+          });
+      
+          container.appendChild(button);
+        }
+      
+        if (searchHistoryArr.length > 12) {
+          searchHistoryArr.splice(0, searchHistoryArr.length - 12); // Remove the oldest items from the search history
+          localStorage.setItem('searchHistory', JSON.stringify(searchHistoryArr)); // Update the search history in localStorage
+        }
+      }
+//function which calls the api
+    function searchWeather(q) {
         var geoCodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${q}&appid=${appid}`;
 
         fetch(geoCodeUrl)
-            .then(function (response) { return response.json(); })
+            .then(function (response) {
+                return response.json();
+            })
             .then(function (data) {
-                var latitude;
-                var longitude;
-
-                latitude = data[0].lat;
-                longitude = data[0].lon;
+                var latitude = data[0].lat;
+                var longitude = data[0].lon;
                 var currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${appid}`;
-
-                var cardEl = document.querySelector('p');
 
                 fetch(currentWeatherUrl)
                     .then((response) => {
                         return response.json();
                     })
+    //takes the data and inserts it into the html
                     .then((data) => {
-                        var highTempEl;
+                        var currentTemp = data.main.temp;
+                        var tempEl= document.getElementById("currentTemp");
+                        tempEl.innerHTML = "Current Temp: " + currentTemp;
 
 
-                        highTempEl = data["main"].temp_max;
+                        var highTempEl = data.main.temp_max;
                         var pHighTemp = document.getElementById("main5");
                         pHighTemp.innerHTML = "High Temp: " + highTempEl;
 
-                        var lowTempEl;
-                        lowTempEl = data["main"].temp_min;
+                        var lowTempEl = data.main.temp_min;
                         var pLowTemp = document.getElementById("main6");
                         pLowTemp.innerHTML = "Low Temp: " + lowTempEl;
 
-                        var feelsLikeEl;
-                        feelsLikeEl = document.getElementById("main0");
-                        feelsLikeTemp = data["main"].feels_like;
+                        var feelsLikeEl = document.getElementById("main0");
+                        var feelsLikeTemp = data.main.feels_like;
                         feelsLikeEl.innerHTML = "Feels Like: " + feelsLikeTemp;
 
-                        var pressureEl;
-                        pressureEl = data["main"].pressure;
+                        var pressureEl = data.main.pressure;
                         var pressureMeasurement = document.getElementById("main2");
                         pressureMeasurement.innerHTML = "Pressure: " + pressureEl;
 
-                        var humidityEl;
-                        humidityEl = document.getElementById("main1");
-                        humidityPercent = data["main"].humidity;
+                        var humidityEl = document.getElementById("main1");
+                        var humidityPercent = data.main.humidity;
                         humidityEl.innerHTML = "Humidity percent: " + humidityPercent;
 
-                        var speedDegreesEl;
-                        speedDegreesEl = document.getElementById("wind1");
-                        windSpeed = data["wind"].speed;
+                        var speedDegreesEl = document.getElementById("wind1");
+                        var windSpeed = data.wind.speed;
                         speedDegreesEl.innerHTML = "Wind Speed: " + windSpeed;
 
-                        var windDegEl;
-                        windDegEl = document.getElementById("wind2");
-                        windDeg = data["wind"].deg;
+                        var windDegEl = document.getElementById("wind2");
+                        var windDeg = data.wind.deg;
                         windDegEl.innerHTML = "Wind Degrees: " + windDeg;
+
+                        return data;
                     })
-
-
-
+                    //takes the data and changes the icon number in the source to render the current weather picture
+                    .then((data) => {
+                        console.log(data)
+                        document.getElementById("current-weather-icon").src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`;
+                    })
+//calls the api for the five day forcast
                 var fiveDayWeather = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=imperial&appid=${appid}`;
                 fetch(fiveDayWeather)
                     .then((response) => {
@@ -84,9 +121,7 @@ $(document).ready(function () {
 
                     .then((data) => {
                         console.log(data);
-
-
-
+//displays the five day forcast in the chart from html
                         const array1 = data;
                         const map1 = array1.list[0].main.temp_max;
                         console.log(map1);
@@ -95,34 +130,40 @@ $(document).ready(function () {
                         highTemp1_5day.innerHTML = "High Temp: " + map1;
 
                         const map2 = array1.list[0].dt_txt;
-                        console.log(map2);
+                        const formattedDate = moment(map2).format('MM-DD-YYYY');
+                        console.log(formattedDate);
                         var heading;
                         heading = document.getElementById("heading");
-                        heading.innerHTML = map2;
+                        heading.innerHTML = formattedDate;
+
 
                         const map3 = array1.list[8].dt_txt;
-                        console.log(map3);
+                        const formattedDate2 = moment(map3).format('MM-DD-YYYY');
+                        console.log(formattedDate2);
                         var heading2;
                         heading2 = document.getElementById("heading2");
-                        heading2.innerHTML = map3;
+                        heading2.innerHTML = formattedDate2;
 
                         const map4 = array1.list[16].dt_txt;
-                        console.log(map4);
+                        const formattedDate3 = moment(map4).format('MM-DD-YYYY');
+                        console.log(formattedDate3);
                         var heading3;
                         heading3 = document.getElementById("heading3");
-                        heading3.innerHTML = map4;
+                        heading3.innerHTML = formattedDate3;
 
                         const map5 = array1.list[24].dt_txt;
-                        console.log(map5);
+                        const formattedDate4 = moment(map5).format('MM-DD-YYYY');
+                        console.log(formattedDate4);
                         var heading4;
                         heading4 = document.getElementById("heading4");
-                        heading4.innerHTML = map5;
+                        heading4.innerHTML = formattedDate4;
 
                         const map6 = array1.list[32].dt_txt;
-                        console.log(map6);
+                        const formattedDate5 = moment(map6).format('MM-DD-YYYY');
+                        console.log(formattedDate5);
                         var heading5;
                         heading5 = document.getElementById("heading5");
-                        heading5.innerHTML = map6;
+                        heading5.innerHTML = formattedDate5;
 
                         const map7 = array1.list[8].main.temp_max;
                         console.log(map7);
@@ -151,7 +192,7 @@ $(document).ready(function () {
 
                         const map11 = array1.list[0].main.temp_min;
                         console.log(map11);
-                        
+
                         highTemp5_5day = document.getElementById("lowTemp0");
                         highTemp5_5day.innerHTML = "Low Temp: " + map11;
 
@@ -272,7 +313,8 @@ $(document).ready(function () {
                         windDegreesByDay.innerHTML = "Wind Degrees: " + map40;
                     })
             });
-
-    })
-})
+//calls the function on 31-55
+    }renderSearchHistory();
+}
+);
 
