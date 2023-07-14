@@ -7,7 +7,7 @@ const weatherIcon = document.querySelector('weather-icon');
 
 var searchHistory = localStorage.getItem('searchHistory');
 //searchbar input and button pressed or enter hit will start the event
-searchFormEl.addEventListener('submit', function (event) {
+searchFormEl.addEventListener('click', function (event) {
     event.preventDefault(); 
 // creating an array that will hold search history
     var userInput = userSearchEl.value;
