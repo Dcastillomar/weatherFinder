@@ -30,4 +30,4 @@ Please refer to the License in the repo.
 
 Webpage: https://dcastillomar.github.io/weatherFinder/
 
-![Alt text](<assets/Screenshot 2023-07-14 161420.png>)
+![Alt text](<assets/Screenshot 2023-07-17 152351.png>)
