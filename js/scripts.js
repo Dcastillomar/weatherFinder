@@ -7,7 +7,7 @@ const weatherIcon = document.querySelector('weather-icon');
 
 var searchHistory = localStorage.getItem('searchHistory');
 //searchbar input and button pressed or enter hit will start the event
-searchFormEl.addEventListener('click', function (event) {
+searchFormEl.addEventListener('submit', function (event) {
     event.preventDefault(); 
 // creating an array that will hold search history
     var userInput = userSearchEl.value;
@@ -53,6 +53,8 @@ searchFormEl.addEventListener('click', function (event) {
           localStorage.setItem('searchHistory', JSON.stringify(searchHistoryArr)); // Update the search history in localStorage
         }
       }
+
+      
 //function which calls the api
     function searchWeather(q) {
         var geoCodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${q}&appid=${appid}`;
@@ -62,6 +64,7 @@ searchFormEl.addEventListener('click', function (event) {
                 return response.json();
             })
             .then(function (data) {
+            
                 var latitude = data[0].lat;
                 var longitude = data[0].lon;
                 var currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${appid}`;
@@ -71,8 +74,13 @@ searchFormEl.addEventListener('click', function (event) {
                         return response.json();
                     })
     //takes the data and inserts it into the html
-                    .then((data) => {
-                        var currentTemp = data.main.temp;
+                    .then((data) => {    
+                        
+                        var city = data.name;
+                        var cityNameEl = document.getElementById('cityname');
+                        cityNameEl.innerHTML = city;
+                        
+                var currentTemp = data.main.temp;
                         var tempEl= document.getElementById("currentTemp");
                         tempEl.innerHTML = "Current Temp: " + currentTemp;
 
