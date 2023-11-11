@@ -8,9 +8,20 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Weather Finder</title>
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chivo+Mono&family=Gabarito&family=Raleway:wght@400;700&family=Rubik:wght@400;700&family=Tilt+Prism&display=swap"
+        rel="stylesheet">
+    <style>
+        body,
+        h1,
+        h2,
+        h3,
+        p {
+            font-family: 'Gabarito', sans-serif;
+        }
+    </style>
 </head>
 
 <body class="sb-nav-fixed">
@@ -23,135 +34,100 @@
             <div class="input-group">
                 <input id="form" class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
                     aria-describedby="btnNavbarSearch" />
+                <div id="suggestions"></div>
                 <button class="btn btn-primary" id="button" type="submit"><i class="fas fa-search"></i></button>
             </div>
         </form>
 
-    
+
     </nav>
-
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="row">
-                <div class="col-xl-4 col-md-6">
-                    <div class="card bg-primary text-white mb-4">
-                        <div class="card-body"></div><h5>Today:</h5>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            
-                            <div class="container-text">
-                                <br>
-                                <p id="main5">High Temp</p>
-                                <p id="main6">Low Temp</p>
-                                <p id="main0">Feels like</p>
-                                <p id="main2">Pressure</p>
-                                <p id="main1">Humidity</p>
-                                <p id="wind1">Wind speed</p>
-                                <p id="wind2">Wind Degrees</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="card bg-warning text-white mb-4">
-                        <div class="card-body"></div>
-                        <h5 class="card-title" id="cityname">City</h5>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <img src="http://openweathermap.org/img/wn/10d@4x.png" class="weather-icon" id="current-weather-icon"
-                                alt="Weather description" style="width: 300px; height: 305px;"></img>
-                                <div class="card-footer" id="currentTemp"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="card bg-primary text-white mb-4">
-                        <div class="card-body"></div>
-                        <h5 class="card-title" id="cityname">Previous Searches:</h5>
-                             <div class="container-text" id="history" style="padding: 30px; height: 322px;">
-                            </div>
-                             
-                        </div>
-                    </div>
-                </div>
-
+    <main>
+        <!-- <div class="card text-center">
+            <div class="card-header">Today:
             </div>
-            <!-- <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-table me-1"></i>
-                    5-Day Forecast
-                </div> -->
-                <div class="card-body" id="table">
-                    <h5>5-Day Forecast</h5>
-                    <TABLE BORDER=1>
-                        <TR>
-                            <TH id=heading>Day 1</TH>
-                            <TH id=heading2>Day 2</TH>
-                            <TH id=heading3>Day 3</TH>
-                            <TH id=heading4>Day 4</TH>
-                            <TH id=heading5>Day 5</TH>
-                        </TR>
-                        <TR>
-                            <TD>
-                                <p id="fiveday0" class="container-text">High Temp </p>
-                                <p id="lowTemp0" class="container-text">Low Temp</p>
-                                <p id="feelsLike0" class="container-text">Feels like</p>
-                                <p id="pressure0" class="container-text">Pressure</p>
-                                <p id="humidity0" class="container-text">Humidity</p>
-                                <p id="speed0" class="container-text">Wind speed </p>
-                                <p id="wind0" class="container-text">Wind Degrees </p>
-                            </TD>
-                            <TD> <BR>
-                                <p id="fiveday2" class="container-text">High Temp </p>
-                                <p id="lowTemp1" class="container-text">Low Temp</p>
-                                <p id="feelsLike1" class="container-text">Feels like</p>
-                                <p id="pressure1" class="container-text">Pressure</p>
-                                <p id="humidity1" class="container-text">Humidity</p>
-                                <p id="speed1" class="container-text">Wind speed </p>
-                                <p id="wind1" class="container-text">Wind Degrees </p> <BR>
-                            </TD>
-                            <TD><BR>
-                                <p id="fiveday3" class="container-text">High Temp </p>
-                                <p id="lowTemp2" class="container-text">Low Temp</p>
-                                <p id="feelsLike2" class="container-text">Feels like</p>
-                                <p id="pressure2" class="container-text">Pressure</p>
-                                <p id="humidity2" class="container-text">Humidity</p>
-                                <p id="speed2" class="container-text">Wind speed </p>
-                                <p id="wind2" class="container-text">Wind Degrees </p> <BR>
-                            </TD> 
-                            <TD><BR>
-                                <p id="fiveday4" class="container-text">High Temp </p>
-                                <p id="lowTemp3" class="container-text">Low Temp</p>
-                                <p id="feelsLike3" class="container-text">Feels like</p>
-                                <p id="pressure3" class="container-text">Pressure</p>
-                                <p id="humidity3" class="container-text">Humidity</p>
-                                <p id="speed3" class="container-text">Wind speed </p>
-                                <p id="wind3" class="container-text">Wind Degrees </p> <BR>
-                            </TD> 
-                            <TD><BR>
-                                <p id="fiveday5" class="container-text">High Temp </p>
-                                <p id="lowTemp4" class="container-text">Low Temp</p>
-                                <p id="feelsLike4" class="container-text">Feels like</p>
-                                <p id="pressure4" class="container-text">Pressure</p>
-                                <p id="humidity4" class="container-text">Humidity</p>
-                                <p id="speed4" class="container-text">Wind speed </p>
-                                <p id="wind4" class="container-text">Wind Degrees </p> <BR>
-                            </TD> 
-                    </TABLE>
+            <div class="card-body">
+                <div class="container-text">
+                    <br>
+                    <p id="currentTemp">Current Temp</p>
+                    <p id="main5">High Temp</p>
+                    <p id="main6">Low Temp</p>
+                    <p id="main0">Feels like</p>
+                    <p id="main2">Pressure</p>
+                    <p id="main1">Humidity</p>
+                    <p id="wind1">Wind speed</p>
+                    <p id="wind2">Wind Degrees</p>
+
+                    <div class="container-text">
+                        <h5 class="card-title" id="cityname">City
+                        </h5>
+                        <img src="http://openweathermap.org/img/wn/10d@4x.png" class="weather-icon"
+                            id="current-weather-icon" alt="Weather description" style="width: 300px; height: 305px;">
+                        </img>
+                    </div>
+
+                    <div class="container-text" id="cityname" style="padding-left: 15px;">Previous Searches:</h5>
+                        <div class="container-text" id="history" style="padding: 30px; height: 322px;">
+                        </div>
+                    </div>
                 </div>
             </div>
-                
-        </div>    
-    </div>
+        </div> -->
+
+        <div class="card text-center">
+            <div class="card-header">Today:</div>
+            <div class="card-body">
+                <div class="row">
+
+                    <!-- First Column -->
+                    <div class="col-md-4">
+                        <div class="container-text">
+                            <br>
+                            <p id="currentTemp">Current Temp</p>
+                            <p id="main5">High Temp</p>
+                            <p id="main6">Low Temp</p>
+                            <p id="main0">Feels like</p>
+                            <p id="main2">Pressure</p>
+                            <p id="main1">Humidity</p>
+                            <p id="wind1">Wind speed</p>
+                            <p id="wind2">Wind Degrees</p>
+                        </div>
+                    </div>
+
+                    <!-- Second Column -->
+                    <div class="col-md-4">
+                        <div class="container-text">
+                            <h5 class="card-title" id="cityname">City</h5>
+                            <img src="http://openweathermap.org/img/wn/10d@4x.png" class="weather-icon"
+                                id="current-weather-icon" alt="Weather description"
+                                style="width: 300px; height: 305px;">
+                        </div>
+                    </div>
+
+                    <!-- Third Column -->
+                    <div class="col-md-4">
+                        <div class="container-text">
+                            <h5 class="card-title" id="cityname" style="padding-left: 15px;">Previous Searches:</h5>
+                            <div class="container-text" id="history" style="padding: 30px; height: 322px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row" id="forecastContainer" style="text-align: center;">
+                <h5 style="text-align: center;">5-Day Forecast</h5>
+            </div>
+        </div>
     </main>
-    </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
-        crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/scripts.js"></script>
 </body>
+
 </html>
