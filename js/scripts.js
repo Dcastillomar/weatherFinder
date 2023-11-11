@@ -226,11 +226,12 @@ function searchWeather(q) {
 
             // Display the five-day forecast
             const forecastContainer = document.getElementById('forecastContainer');
+            forecastContainer.innerHTML = '';
 
             for (let i = 0; i < forecastList.length; i += 8) {
                 // Create a new column element
                 const column = document.createElement('div');
-                column.classList.add('col-md-2', 'mb-4', 'border-right'); // Adjust the class as needed
+                column.classList.add('col-md-2', 'mb-4'); // Adjust the class as needed
     
                 // Extract data for the day
                 const date = moment(forecastList[i].dt_txt).format('MM-DD-YYYY');
@@ -244,19 +245,22 @@ function searchWeather(q) {
     
                 // Create HTML content for the column
                 const columnContent = `
-                    <h5>${date}</h5>
-                    <p>High Temp: ${highTemp}</p>
-                    <p>Low Temp: ${lowTemp}</p>
-                    <p>Feels like: ${feelsLike}</p>
-                    <p>Pressure: ${pressure}</p>
-                    <p>Humidity: ${humidity}</p>
-                    <p>Wind Speed: ${windSpeed}</p>
-                    <p>Wind Degrees: ${windDegrees}</p>
-                `;
+                <h5 style="font-size: 1.5em;">${date}</h5>
+                <p style="font-size: 1em;">High Temp: ${highTemp}</p>
+                <p style="font-size: 1em;">Low Temp: ${lowTemp}</p>
+                <p style="font-size: 1em;">Feels like: ${feelsLike}</p>
+                <p style="font-size: 1em;">Pressure: ${pressure}</p>
+                <p style="font-size: 1em;">Humidity: ${humidity}</p>
+                <p style="font-size: 1em;">Wind Speed: ${windSpeed}</p>
+                <p style="font-size: 1em;">Wind Degrees: ${windDegrees}</p>
+            `;
     
                 // Set the column content
                 column.innerHTML = columnContent;
-    
+                column.style.color = 'white';
+                column.style.border = '1px solid white';
+                column.style.width = '20%';
+                column.style.fontWeight= "700";
                 // Append the column to the container
                 forecastContainer.appendChild(column);
             }

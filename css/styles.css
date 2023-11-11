@@ -18,6 +18,8 @@
   }
 }
 
-.forecastContainer{
-width: auto;
+body {
+  background-image: url("../assets/pexels-mudassir-ali-2680270.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
