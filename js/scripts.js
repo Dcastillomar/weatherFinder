@@ -261,6 +261,7 @@ function searchWeather(q) {
                 column.style.border = '1px solid white';
                 column.style.width = '20%';
                 column.style.fontWeight= "700";
+                
                 // Append the column to the container
                 forecastContainer.appendChild(column);
             }

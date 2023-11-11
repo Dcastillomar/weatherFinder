@@ -18,6 +18,25 @@
   }
 }
 
+@media screen and (min-width: 600px) {
+  h5 {
+      font-size: 1.5em;
+  }
+  p {
+      font-size: 1em;
+  }
+}
+
+
+@media screen and (max-width: 599px) {
+  h5 {
+      font-size: 1.2em; /* Adjust the font size for smaller screens */
+  }
+  p {
+      font-size: 0.8em; /* Adjust the font size for smaller screens */
+  }
+}
+
 body {
   background-image: url("../assets/pexels-mudassir-ali-2680270.jpg");
   background-size: cover;
