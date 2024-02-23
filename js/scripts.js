@@ -258,9 +258,10 @@ function searchWeather(q) {
                 // Set the column content
                 column.innerHTML = columnContent;
                 column.style.color = 'white';
-                column.style.border = '1px solid white';
-                // column.style.width = '100%';
+                column.style.border = '3px solid white';
+                column.style.borderRadius= '10px';
                 column.style.fontWeight= "700";
+                
                 
                 // Append the column to the container
                 forecastContainer.appendChild(column);

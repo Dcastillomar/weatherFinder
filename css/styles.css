@@ -46,7 +46,6 @@ body {
 #forecastContainer {
   text-align: center;
   color: white;
-  border: 1px solid white;
   font-weight: 700;
   margin-bottom: 10px; /* Adjust spacing between rows */
 }
