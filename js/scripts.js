@@ -259,7 +259,7 @@ function searchWeather(q) {
                 column.innerHTML = columnContent;
                 column.style.color = 'white';
                 column.style.border = '1px solid white';
-                column.style.width = '20%';
+                // column.style.width = '100%';
                 column.style.fontWeight= "700";
                 
                 // Append the column to the container

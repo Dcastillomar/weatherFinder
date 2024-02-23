@@ -42,3 +42,20 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+#forecastContainer {
+  text-align: center;
+  color: white;
+  border: 1px solid white;
+  font-weight: 700;
+  margin-bottom: 10px; /* Adjust spacing between rows */
+}
+
+@media only screen and (min-width: 600px) {
+  .container .row {
+      display: flex;
+      justify-content: center;
+  }
+}
+
+
